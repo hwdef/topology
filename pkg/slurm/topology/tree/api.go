@@ -3,7 +3,7 @@ package tree
 import (
 	"fmt"
 
-	"github.com/yeahdongcn/topology/pkg/slurm"
+	"github.com/hwdef/topology/pkg/slurm"
 )
 
 const (

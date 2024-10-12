@@ -1,4 +1,4 @@
-module github.com/yeahdongcn/topology
+module github.com/hwdef/topology
 
 go 1.21
 

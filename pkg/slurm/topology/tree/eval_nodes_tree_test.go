@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yeahdongcn/topology/pkg/slurm"
+	"github.com/hwdef/topology/pkg/slurm"
 )
 
 func Benchmark_eval_nodes_tree_topo3(b *testing.B) {

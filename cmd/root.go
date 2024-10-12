@@ -7,7 +7,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/yeahdongcn/topology/pkg/slurm/topology/tree"
+	"github.com/hwdef/topology/pkg/slurm/topology/tree"
 )
 
 var (

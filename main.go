@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/hwdef/topology/cmd"
 	log "github.com/sirupsen/logrus"
-	"github.com/yeahdongcn/topology/cmd"
 )
 
 func main() {

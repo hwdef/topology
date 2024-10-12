@@ -5,7 +5,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/yeahdongcn/topology/pkg/slurm"
+	"github.com/hwdef/topology/pkg/slurm"
 )
 
 func eval_nodes_enough_nodes(avail_nodes, rem_nodes int) bool {

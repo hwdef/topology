@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -186,49 +185,10 @@ func _check_better_path(i, j, k int) {
 }
 
 func _node_name2bitmap(node_names string) (*bitstr_t, error) {
-	// Regular expression to match patterns like "node[1-3,5,7-9]"
-	re := regexp.MustCompile(`([a-zA-Z-]+)\[([0-9,-]+)\]`)
-	matches := re.FindStringSubmatch(node_names)
-
-	if len(matches) != 3 {
-		return nil, fmt.Errorf("invalid hostlist expression")
-	}
-
-	prefix := matches[1]
-	ranges := strings.Split(matches[2], ",")
-
+	nodes := strings.Split(node_names, ",")
 	var my_bitmap bitstr_t
-	for _, r := range ranges {
-		if strings.Contains(r, "-") {
-			// Handle range like "1-3"
-			bounds := strings.Split(r, "-")
-			lower, err := strconv.Atoi(bounds[0])
-			if err != nil {
-				return nil, err
-			}
-			upper, err := strconv.Atoi(bounds[1])
-			if err != nil {
-				return nil, err
-			}
-			for i := lower; i <= upper; i++ {
-				format := "%s%d"
-				if strings.HasPrefix(bounds[0], "0") {
-					format = fmt.Sprintf("%%s%%0" + fmt.Sprintf("%d", len(bounds[0])) + "d")
-				}
-				bit_set(&my_bitmap, fmt.Sprintf(format, prefix, i))
-			}
-		} else {
-			// Handle single number like "5"
-			num, err := strconv.Atoi(r)
-			if err != nil {
-				return nil, err
-			}
-			format := "%s%d"
-			if strings.HasPrefix(r, "0") {
-				format = fmt.Sprintf("%%s%%0" + fmt.Sprintf("%d", len(r)) + "d")
-			}
-			bit_set(&my_bitmap, fmt.Sprintf(format, prefix, num))
-		}
+	for _, n := range nodes {
+		bit_set(&my_bitmap, n)
 	}
 
 	return &my_bitmap, nil
